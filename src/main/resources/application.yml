@@ -1,0 +1,32 @@
+#配置端口号
+server:
+  port: 8080
+spring:
+  application:
+    #只是一个名字，没啥用
+    name: reggit_takeout
+  #配置数据源
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/reggie?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 1234
+
+#mybatis——plus的相关配置
+
+mybatis-plus:
+  configuration:
+    #配置表字段和实体类属性名的相关映射 将下划线命名自动与驼峰命名相映射
+    map-underscore-to-camel-case: true
+    #日志输出
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      #设置主键的生成策略
+      id-type: assign_id
+
+Reggit:
+  path: D:\img\
+
+
