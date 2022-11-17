@@ -2,6 +2,7 @@ package com.chenpeiyu.common;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ import java.util.Map;
  */
 
 @Data
-public class R<T> {
+public class R<T> implements Serializable {
     private Integer code;//封装状态编码，如果1 代表成功，其他数字代表失败。这是事先之前约定好的
 
     private String msg;//错误信息

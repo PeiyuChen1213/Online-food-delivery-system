@@ -37,6 +37,10 @@ spring:
           starttls:
             enable: true
             required: true
+  cache:
+    redis:
+      time-to-live: 1800000 #设置缓存数据的过期时间
+
 #mybatis——plus的相关配置
 mybatis-plus:
   configuration:

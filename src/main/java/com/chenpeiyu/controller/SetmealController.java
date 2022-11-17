@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -76,6 +78,7 @@ public class SetmealController {
     //新增套餐的方法
 
     @PostMapping
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public R<String> save(@RequestBody SetmealDto setmealDto) {
         setmealService.saveSetmealWithDish(setmealDto);
         return R.success("添加成功！");
@@ -92,6 +95,7 @@ public class SetmealController {
 
     //套餐数据的修改
     @PutMapping
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public R<String> updateSetmeal(@RequestBody SetmealDto setmealDto) {
         setmealService.updateSetmealDtoWithDish(setmealDto);
         return R.success("修改成功！");
@@ -100,6 +104,7 @@ public class SetmealController {
     //套餐数据的删除实现
 
     @DeleteMapping
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public R<String> delete(@RequestParam List<Long> ids) {
         setmealService.delete(ids);
         return R.success("修改成功！");
@@ -107,6 +112,7 @@ public class SetmealController {
 
     //修改商品的起售或是停售
     @PostMapping("/status/{status}")
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public R<String> status(@PathVariable Integer status, @RequestParam List<Long> ids) {
         //起售前端传入的数据是1，拿到1之后 创建一个对象
         LambdaQueryWrapper<Setmeal> setmealLambdaQueryWrapper = new LambdaQueryWrapper<>();
@@ -119,7 +125,13 @@ public class SetmealController {
 
     //前台页面发送套餐的请求
 
+    /**
+     * 根据条件查询套餐数据
+     * @param setmeal
+     * @return
+     */
     @GetMapping("/list")
+    @Cacheable(value = "setmealCache",key = "#setmeal.categoryId+'_'+#setmeal.status")
     public R<List<Setmeal>> list(Setmeal setmeal) {
         LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(setmeal.getCategoryId() != null, Setmeal::getCategoryId, setmeal.getCategoryId());
