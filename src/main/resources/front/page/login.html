@@ -65,6 +65,10 @@
                         this.msgFlag = false
                         //this.form.code = (Math.random()*1000000).toFixed(0)
                         sendMsgApi({phone:this.form.phone})
+                        this.$message({
+                            message: "验证码发送成功！",
+                            type: 'success'
+                        });
                     }else{
                         this.msgFlag = true
                     }
