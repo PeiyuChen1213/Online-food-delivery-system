@@ -14,12 +14,30 @@ spring:
       password: 1234
   #redis 的配置信息
   redis:
-    host: 192.168.200.200
+    host: localhost
     port: 6379
-    password: root@123456
     database: 0
+  #邮件的相关配置信息
+  mail:
+    #smtp服务主机  qq邮箱则为smtp.qq.com
+    host: smtp.163.com
+    #服务协议
+    protocol: smtp
+    # 编码集
+    default-encoding: UTF-8
+    #发送邮件的账户
+    username: PeiyuChen2001@163.com
+    #授权码
+    password: QLRSHSZRBYSANNWM
+    test-connection: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 #mybatis——plus的相关配置
-
 mybatis-plus:
   configuration:
     #配置表字段和实体类属性名的相关映射 将下划线命名自动与驼峰命名相映射
