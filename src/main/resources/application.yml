@@ -35,8 +35,8 @@ spring:
     props:
       sql:
         show: true #开启SQL显示，默认false
-    main:
-      allow-bean-definition-overriding: true
+  main:
+    allow-bean-definition-overriding: true
   #redis 的配置信息
   redis:
     host: localhost
