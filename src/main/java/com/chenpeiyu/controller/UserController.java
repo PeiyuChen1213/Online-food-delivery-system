@@ -47,10 +47,10 @@ public class UserController {
             log.info("code={}", code);
 
             //调用瑞吉外卖的邮箱验证码
-            emailService.sendVerificationCode(phone,code);
+           // emailService.sendVerificationCode(phone, code);
             //需要将生成的验证码保存到Session
             //request.getSession().setAttribute(phone, code);
-            redisTemplate.opsForValue().set(phone,code,5, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
 
             return R.success("手机验证码短信发送成功");
         }
@@ -102,5 +102,13 @@ public class UserController {
             return R.success(user);
         }
         return R.error("登录失败");
+    }
+
+
+    @PostMapping("/loginout")
+    public R<String> logout(HttpServletRequest request) {
+        //清理session中的用户id
+        request.getSession().removeAttribute("user");
+        return R.success("退出成功！");
     }
 }
