@@ -21,10 +21,4 @@ function loginoutApi() {
   })
 }
 
-function getNameApi() {
-    return $axios({
-        'url': '/user/getName',
-        'method': 'get',
-    })
-}
   

@@ -42,7 +42,7 @@ public class LoginCheckFilter implements Filter {
                 "/front/**",
                 "/common/**",
                 "/user/sendMsg",
-                "/user/login"
+                "/user/login",
         };
 
         //2 判断本次请求是否需要被处理
@@ -73,7 +73,6 @@ public class LoginCheckFilter implements Filter {
             //拦截各个请求之后，获取每个请求的uri
             return;
         }
-
 
         //判断登录状态，如果已登录，则直接放行
         if (request.getSession().getAttribute("user") != null) {
