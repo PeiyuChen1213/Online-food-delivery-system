@@ -143,6 +143,7 @@ public class OrderController {
      * @return
      */
     @PostMapping("/again")
+    @Transactional
     public R<String> again(@RequestBody Orders order){
         //传入的参数是一个json类型的数据
         //可以先去订单的数据库当中，把这个订单查出来，只要修改订单的下单时间就可以了
