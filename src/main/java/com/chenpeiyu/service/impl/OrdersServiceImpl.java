@@ -59,6 +59,7 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
             throw new CustomException("用户地址信息有误，不能下单");
         }
 
+        //
         long orderId = IdWorker.getId();//订单号
 
         AtomicInteger amount = new AtomicInteger(0);
