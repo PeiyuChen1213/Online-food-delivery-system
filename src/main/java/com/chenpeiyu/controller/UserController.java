@@ -45,7 +45,6 @@ public class UserController {
             //生成随机的4位验证码
             String code = ValidateCodeUtils.generateValidateCode(4).toString();
             log.info("code={}", code);
-
             //调用瑞吉外卖的邮箱验证码
             emailService.sendVerificationCode(phone, code);
             //需要将生成的验证码保存到Session
