@@ -47,7 +47,7 @@ public class UserController {
             log.info("code={}", code);
 
             //调用瑞吉外卖的邮箱验证码
-           // emailService.sendVerificationCode(phone, code);
+            emailService.sendVerificationCode(phone, code);
             //需要将生成的验证码保存到Session
             //request.getSession().setAttribute(phone, code);
             redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
