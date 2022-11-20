@@ -12,10 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -45,7 +42,6 @@ public class UserController {
             //生成随机的4位验证码
             String code = ValidateCodeUtils.generateValidateCode(4).toString();
             log.info("code={}", code);
-
             //调用瑞吉外卖的邮箱验证码
             emailService.sendVerificationCode(phone, code);
             //需要将生成的验证码保存到Session
@@ -110,5 +106,13 @@ public class UserController {
         //清理session中的用户id
         request.getSession().removeAttribute("user");
         return R.success("退出成功！");
+    }
+
+    @GetMapping("/getName")
+    public R<User> getName(@RequestBody User user) {
+        LambdaQueryWrapper<User> userLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        userLambdaQueryWrapper.eq(User::getPhone, user.getPhone());
+        User one = userService.getOne(userLambdaQueryWrapper);
+        return R.success(one);
     }
 }
