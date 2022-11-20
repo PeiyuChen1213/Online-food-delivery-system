@@ -9,7 +9,7 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost/reggie?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://47.108.78.250/reggie?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: 1234
   #redis 的配置信息
@@ -17,20 +17,33 @@ spring:
     host: localhost
     port: 6379
     database: 0
-    password: 1234
   #邮件的相关配置信息
+#  mail:
+#    #smtp服务主机  qq邮箱则为smtp.qq.com
+#    host: smtp.163.com
+#    #服务协议
+#    protocol: smtp
+#    # 编码集
+#    default-encoding: UTF-8
+#    #发送邮件的账户
+#    username: PeiyuChen2001@163.com
+#    #授权码
+#    password: QLRSHSZRBYSANNWM
+#    test-connection: true
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
   mail:
-    #smtp服务主机  qq邮箱则为smtp.qq.com
     host: smtp.163.com
-    #服务协议
-    protocol: smtp
-    # 编码集
-    default-encoding: UTF-8
-    #发送邮件的账户
     username: PeiyuChen2001@163.com
-    #授权码
     password: QLRSHSZRBYSANNWM
-    test-connection: true
+    port: 465
+    protocol: smtp
+    default-encoding: utf-8
     properties:
       mail:
         smtp:
@@ -38,6 +51,11 @@ spring:
           starttls:
             enable: true
             required: true
+          ssl:
+            enable: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
   cache:
     redis:
       time-to-live: 1800000 #设置缓存数据的过期时间
