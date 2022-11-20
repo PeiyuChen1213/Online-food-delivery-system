@@ -55,7 +55,6 @@ mybatis-plus:
       id-type: assign_id
 
 Reggit:
-  #path: /usr/local/img/
-  path: D:\img\
+  path: /usr/local/img/
 
 
