@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableCaching
 public class ReggitTakeoutApplication {
-
+    
     public static void main(String[] args) {
         SpringApplication.run(ReggitTakeoutApplication.class, args);
         log.info("项目启动成功! ");
